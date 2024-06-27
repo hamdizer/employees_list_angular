@@ -1,0 +1,64 @@
+.mat-column-email {
+  flex: 0 0 18%;
+}
+.mat-column-salary {
+  flex: 0 0 7%;
+}
+
+.mat-column-address {
+  flex: 0 0 10%;
+}
+.mat-column-contactNumber {
+  flex: 0 0 10%;
+}
+
+.mat-column-lastName {
+  flex: 0 0 10%;
+}
+.mat-column-firstName {
+  flex: 0 0 10%;
+}
+.example-header {
+  min-height: 64px;
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}
+.container {
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+}
+.pointer {
+  cursor: pointer;
+}
+.multi-delete {
+  margin-top: 10px;
+  float: right;
+  cursor: pointer;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .column-id,
+  .column-action {
+    display: none;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .column-id,
+  .column-salary,
+  .column-address {
+    display: none;
+  }
+}

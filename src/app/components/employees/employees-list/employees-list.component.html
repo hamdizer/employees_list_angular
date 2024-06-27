@@ -1,0 +1,179 @@
+<div class="container">
+  <h2>Liste des employées</h2>
+  <mat-icon
+    (click)="openDialog()"
+    aria-hidden="false"
+    class="pointer"
+    aria-label="Add Item"
+    fontIcon="add_circle"
+  ></mat-icon>
+</div>
+<div class="example-header">
+  <ng-container *ngIf="selection.hasValue()">
+    <mat-icon
+      aria-hidden="false"
+      class="multi-delete"
+      (click)="deleteSelectedEmployees()"
+      aria-label="Delete Item"
+      fontIcon="delete"
+      >delete</mat-icon
+    >
+  </ng-container>
+
+  <mat-form-field style="width: 100%">
+    <input
+      matInput
+      #inputFilter
+      placeholder="Filtrer"
+      (keyup)="applyFilter(inputFilter.value)"
+    />
+  </mat-form-field>
+</div>
+<div class="mat-app-background basic-container">
+  <div class="mat-elevation-z8">
+    <mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="select">
+        <mat-header-cell *matHeaderCellDef>
+          <mat-checkbox
+            (click)="$event.stopPropagation()"
+            (change)="$event ? masterToggle() : null"
+            [checked]="selection.hasValue() && isAllSelected()"
+            [indeterminate]="selection.hasValue() && !isAllSelected()"
+          >
+          </mat-checkbox>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <mat-checkbox
+            (click)="$event.stopPropagation()"
+            (change)="$event ? selection.toggle(row) : null"
+            [checked]="selection.isSelected(row)"
+          >
+          </mat-checkbox>
+        </mat-cell>
+      </ng-container>
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell class="column-id" *matHeaderCellDef mat-sort-header>
+          ID
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{ row.id }} </mat-cell>
+      </ng-container>
+
+      <!-- Progress Column -->
+      <ng-container matColumnDef="age">
+        <mat-header-cell class="column-age" *matHeaderCellDef mat-sort-header>
+          Age
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{ row.age }}% </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="dob">
+        <mat-header-cell class="column-dob" *matHeaderCellDef mat-sort-header>
+          Dob
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{ row.dob }} </mat-cell>
+      </ng-container>
+      <!-- Color Column -->
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Email
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          {{ row.email }}
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="salary">
+        <mat-header-cell
+          class="column-salary"
+          *matHeaderCellDef
+          mat-sort-header
+        >
+          Salaire
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          {{ row.salary }}
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="address">
+        <mat-header-cell
+          class="column-address"
+          *matHeaderCellDef
+          mat-sort-header
+        >
+          Addresse
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          {{ row.address }}
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="imageUrl">
+        <mat-header-cell class="column-image" *matHeaderCellDef mat-sort-header>
+          Image
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          {{ row.imageUrl }}
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="lastName">
+        <mat-header-cell
+          class="column-lastName"
+          *matHeaderCellDef
+          mat-sort-header
+        >
+          Nom
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          {{ row.lastName }}
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="firstName">
+        <mat-header-cell
+          class="column-firstName"
+          *matHeaderCellDef
+          mat-sort-header
+        >
+          Prénom
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          {{ row.firstName }}
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="contactNumber">
+        <mat-header-cell
+          class="column-contact"
+          *matHeaderCellDef
+          mat-sort-header
+        >
+          Numéro
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          {{ row.contactNumber }}
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="action">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Actions
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <mat-icon
+            (click)="deleteEmployee(row.id)"
+            aria-hidden="false"
+            style="cursor: pointer"
+            aria-label="Delete Item"
+            fontIcon="delete"
+          ></mat-icon>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"> </mat-row>
+    </mat-table>
+
+    <mat-paginator
+      [pageSizeOptions]="pageSizeOptions"
+      [pageSize]="currentPageSize"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>
+</div>

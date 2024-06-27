@@ -1,0 +1,68 @@
+<h1 mat-dialog-title>Ajouter Nouveau Employé</h1>
+<div mat-dialog-content>
+  <form>
+    <mat-form-field appearance="fill" class="full_width">
+      <mat-label>Prénom</mat-label>
+      <input
+        matInput
+        [(ngModel)]="employee.firstName"
+        name="firstName"
+        required
+      />
+    </mat-form-field>
+    <br />
+    <mat-form-field appearance="fill" class="full_width">
+      <mat-label>Nom</mat-label>
+      <input
+        matInput
+        [(ngModel)]="employee.lastName"
+        name="lastName"
+        required
+      />
+    </mat-form-field>
+    <br />
+    <mat-form-field appearance="fill" class="full_width">
+      <mat-label>Email</mat-label>
+      <input matInput [(ngModel)]="employee.email" name="email" required />
+    </mat-form-field>
+    <br />
+    <mat-form-field appearance="fill" class="full_width">
+      <mat-label>Age</mat-label>
+      <input
+        matInput
+        type="number"
+        [(ngModel)]="employee.age"
+        name="age"
+        required
+      />
+    </mat-form-field>
+    <br />
+    <mat-form-field appearance="fill" class="full_width">
+      <mat-label>Salaire</mat-label>
+      <input matInput [(ngModel)]="employee.salary" name="salary" required />
+    </mat-form-field>
+    <br />
+    <mat-form-field appearance="fill" class="full_width">
+      <mat-label>Addresse</mat-label>
+      <input matInput [(ngModel)]="employee.address" name="address" required />
+    </mat-form-field>
+    <br />
+    <mat-form-field appearance="fill" class="full_width">
+      <mat-label>Numéro</mat-label>
+      <input
+        matInput
+        [(ngModel)]="employee.contactNumber"
+        name="contactNumber"
+        required
+      />
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="full_width">
+      <mat-label>Image</mat-label>
+      <input matInput [(ngModel)]="employee.imageUrl" name="image" required />
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Annuler</button>
+  <button mat-button [mat-dialog-close]="employee">Ajouter</button>
+</div>
